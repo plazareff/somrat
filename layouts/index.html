@@ -15,7 +15,7 @@
   </div>
   <div class="owl-carousel owl-full-width owl-theme" id="background-slide">
     {{ range .Params.slider_images }}
-    <div class="slider"><img class="img-fluid" src="{{ . | absURL }}" alt="slider-background"></div>
+    <div class="slider"><img class="img-fluid" src="{{ . | relUrl }}" alt="slider-background"></div>
     {{ end }}
   </div>
   <div class="container">
@@ -51,7 +51,7 @@
       <span></span>
     </label>
   </div>
-  <div class="fullscreen-nav-container" style="background-image: url('{{ .Params.bg_image | absURL }}');">
+  <div class="fullscreen-nav-container" style="background-image: url('{{ .Params.bg_image | relUrl }}');">
     <div class="container-fluid">
       <div class="full-nav-container row">
         <div class="full-nav-holder">
@@ -130,7 +130,7 @@
           </div>
         </a>
         <div class="mobile-menu-logo"><a href="{{site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ site.Params.logo_dark | absURL }}" alt="{{ site.Title }}"></a>
+              src="{{ site.Params.logo_dark | relUrl }}" alt="{{ site.Title }}"></a>
         </div>
         <div class="menu-slider">
           <nav>
@@ -187,14 +187,14 @@
           <div class="content">{{ .Content | markdownify | emojify }}</div>
           {{ with .Params.button }}
           {{ if .enable }}
-          <a href="{{ .link | absURL }}" class="download-cv hvr-icon-hang"> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
+          <a href="{{ .link | relUrl }}" class="download-cv hvr-icon-hang"> {{ .label }} &nbsp; &nbsp; &nbsp;</a>
           {{ end }}
           {{ end }}
         </div>
       </div>
       {{ with .Params.image }}
       <div class="col-lg-6 col-sm-6 col-9 about-me-images wow fadeInUp" data-wow-duration="1.5s">
-        <img class="img-fluid" src="{{ . | absURL }}" alt="about-me">
+        <img class="img-fluid" src="{{ . | relUrl }}" alt="about-me">
       </div>
       {{ end }}
     </div>
@@ -260,7 +260,7 @@
             {{ range .Params.service_list }}
             <div class="col-lg-4 col-sm-4 col-12 services-icon">
               <div class="service-img">
-                <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name | markdownify }}">
+                <img class="img-fluid" src="{{ .image | relUrl }}" alt="{{ .name | markdownify }}">
               </div>
               <div class="service-label">{{ .name | markdownify }}</div>
             </div>
@@ -277,13 +277,13 @@
 <!-- call to action -->
 {{ with .GetPage "call-to-action" }}
 <style>{{.Params.custom_css | safeCSS}}</style>
-<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | absURL }}');">
+<section id="cta" class="need-service overlay section-sm wow fadeInUp {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} data-wow-duration="1.5s" style="background-image: url('{{ .Params.bg_image | relUrl }}');">
   <div class="container position-relative z-index-9">
     <h1>{{ .Title | markdownify }}</h1>
     {{ with .Content }}<div class="text-white content">{{ . | markdownify }}</div> {{ end }}
     {{ with .Params.button }}
     {{ if .enable }}
-    <a href="{{ .link | absURL}}">{{ .label }}</a>
+    <a href="{{ .link | relUrl}}">{{ .label }}</a>
     {{ end }}
     {{ end }}
   </div>
@@ -324,8 +324,8 @@
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 filtr-item"
             data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
             <div class="item-holder">
-              <a class="image-pop" href="{{ .Params.image | absURL }}" title="{{ .Title | markdownify }}">
-                 <img src="{{ .Params.image | absURL }}" alt="{{ .Title | markdownify }}">
+              <a class="image-pop" href="{{ .Params.image | relUrl }}" title="{{ .Title | markdownify }}">
+                 <img src="{{ .Params.image | relUrl }}" alt="{{ .Title | markdownify }}">
               </a>
               <div class="item-caption">
                 <h2 class="mt-2"><a class="text-white" href="{{.Permalink}}">{{ .Title | markdownify }}</a></h2>
@@ -340,7 +340,7 @@
         </div>
         {{ if gt (len .Data.Pages) 6}}
         <div class="text-center wow fadeInUp mt-4" data-wow-duration="1.5s">
-          <a href="{{`portfolio` | absURL}}" class="btn btn-primary">See More</a>
+          <a href="{{`portfolio` | relUrl}}" class="btn btn-primary">See More</a>
         </div>
         {{ end }}
       </div>
@@ -362,7 +362,7 @@
           {{ range .Params.testimonial_slider }}
           <div class="single-testimonial">
             <div class="testimonial-holder">
-              <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
+              <img class="img-fluid" src="{{ .image | relUrl }}" alt="{{ .name }}">
               <h2>{{ .name }}</h2>
               <span>{{ .designation | markdownify }}</span>
               <p><i class="fa fa-quote-left"></i> {{ .content | markdownify }} <i class="fa fa-quote-right"></i></p>
@@ -391,7 +391,7 @@
     <div class="fun-facts wow fadeInUp" data-wow-duration="1.5s">
       {{ range .Params.funfacts }}
       <div class="fun-fact-holder">
-        <img class="img-fluid" src="{{ .image | absURL }}" alt="{{ .name }}">
+        <img class="img-fluid" src="{{ .image | relUrl }}" alt="{{ .name }}">
         <p class="fact-counter count" data-count="{{ .count }}">0</p>
         <p>{{ .name }}</p>
       </div>
@@ -405,7 +405,7 @@
 <!-- Start Contact -->
 {{ with .GetPage "contact"}}
 <style>{{.Params.custom_css | safeCSS}}</style>
-<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | absURL}}');" id="contact">
+<section class="contact {{.Params.custom_class}}" {{.Params.custom_attributes | safeHTMLAttr}} style="background-image: url('{{.Params.bg_image | relUrl}}');" id="contact">
   <div class="container">
     <div class="row">
       <div class="contact-holder col-lg-8 offset-lg-2 col-sm-8 offset-sm-2">
